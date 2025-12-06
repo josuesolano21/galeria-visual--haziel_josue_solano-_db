@@ -1,39 +1,54 @@
 /* ============================================================================
-   GALERÍA DBZ - DISEÑO ULTRA INSTINTO (VERSIÓN CLARA)
-   Nuevo concepto visual con energía dinámica y efectos modernos
-   Paleta de colores más luminosa para mejor visibilidad
+   GALERÍA DBZ - DISEÑO ULTRA INSTINTO
+   Proyecto de galería visual con efectos dinámicos inspirados en Dragon Ball Z
+   
+   Autor: Haziel Josue Solano
+   Fecha: Diciembre 2025
+   Descripción: CSS con efectos visuales avanzados, gradientes dinámicos,
+   animaciones suaves y diseño responsivo para una galería de personajes.
 ============================================================================ */
 
-/* ===========================
-   RESET Y CONFIGURACIÓN BASE
-   =========================== */
+/* =============================================================================
+   RESET BÁSICO Y CONFIGURACIÓN GLOBAL
+   - Elimina márgenes y padding predeterminados del navegador
+   - Aplica box-sizing para facilitar el cálculo de dimensiones
+============================================================================= */
 * {
-    box-sizing: border-box;
+    box-sizing: border-box;  /* El padding y border se incluyen en el width/height */
     margin: 0;
     padding: 0;
 }
 
-/* 
-   BODY - Fondo base más claro con efecto de profundidad
-   Se usa un gris oscuro en lugar de negro puro para mejor contraste
-*/
+/* =============================================================================
+   BODY - Contenedor principal de la página
+   - Fondo gris oscuro (#1a1a1a) en lugar de negro puro para mejor contraste
+   - Tipografía moderna y legible (Segoe UI)
+   - Overflow-x hidden para evitar scroll horizontal no deseado
+============================================================================= */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background: #1a1a1a; /* Fondo más claro que antes (#0a0a0a) */
+    background: #1a1a1a;
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
 }
 
-/* 
-   Capa de efectos de energía - Simula partículas Ki flotantes
-   Usa gradientes radiales para crear puntos de luz dinámicos
-*/
+/* =============================================================================
+   CAPA DE PARTÍCULAS DE ENERGÍA
+   - Crea un efecto de fondo dinámico con gradientes radiales
+   - Simula partículas Ki flotantes en diferentes posiciones
+   - Fixed position para que permanezca mientras se hace scroll
+   - Pointer-events: none permite interactuar con elementos debajo
+   - Los colores representan diferentes tipos de energía:
+     * Naranja (255, 150, 50): Energía de batalla/fuego
+     * Azul (100, 180, 255): Energía Ki/Kamehameha
+     * Dorado (255, 220, 100): Super Saiyajin
+============================================================================= */
 body::before {
     content: '';
     position: fixed;
-    inset: 0;
+    inset: 0;  /* Equivalente a top:0; right:0; bottom:0; left:0; */
     background: 
         radial-gradient(circle at 20% 50%, rgba(255, 150, 50, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(100, 180, 255, 0.15) 0%, transparent 50%),
@@ -43,26 +58,32 @@ body::before {
     z-index: 0;
 }
 
-/* ===========================
+/* =============================================================================
    HEADER PRINCIPAL
-   Sección superior con título y descripción
-   =========================== */
+   - Sección superior que contiene el título y descripción del sitio
+   - Gradiente vertical que simula un resplandor desde arriba
+   - Border-bottom con gradiente de colores DBZ (naranja, dorado, azul)
+   - Position relative para que los pseudo-elementos se posicionen respecto a él
+============================================================================= */
 .header {
     position: relative;
     text-align: center;
     padding: 80px 20px 60px;
-    /* Gradiente más claro para el header */
+    /* Gradiente que va de gris oscuro a marrón oscuro y vuelve a gris */
     background: linear-gradient(180deg, #2a2a2a 0%, #3a2510 50%, #2a2a2a 100%);
     overflow: hidden;
     border-bottom: 3px solid;
-    /* Borde con gradiente de colores DBZ */
+    /* Border con gradiente multicolor que recorre horizontalmente */
     border-image: linear-gradient(90deg, #ff8c00, #ffd700, #4a9eff, #ff8c00) 1;
 }
 
-/* 
-   Efecto de aura que se desplaza constantemente
-   Simula energía moviéndose por el header
-*/
+/* =============================================================================
+   EFECTO DE AURA EN EL HEADER
+   - Pseudo-elemento ::after que crea una capa de luz móvil
+   - Dos gradientes diagonales que se cruzan simulando energía
+   - La animación auraSweep hace que se desplace constantemente
+   - Inset: 0 hace que cubra todo el header
+============================================================================= */
 .header::after {
     content: '';
     position: absolute;
@@ -74,10 +95,15 @@ body::before {
     pointer-events: none;
 }
 
-/* 
-   Título principal con efecto de gradiente arcoíris
-   Usa background-clip para aplicar el gradiente al texto
-*/
+/* =============================================================================
+   TÍTULO PRINCIPAL (H1)
+   - Texto con gradiente multicolor que simula transformación Super Saiyajin
+   - Background-clip: text hace que el gradiente se aplique solo al texto
+   - -webkit-text-fill-color: transparent permite ver el gradiente
+   - Filter drop-shadow crea múltiples capas de brillo/glow
+   - Animation rainbowShift mueve el gradiente creando efecto de energía
+   - Z-index: 2 lo coloca sobre los pseudo-elementos del header
+============================================================================= */
 .header h1 {
     position: relative;
     z-index: 2;
@@ -85,62 +111,79 @@ body::before {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 4px;
+    /* Gradiente de dorado a naranja a azul */
     background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #4a9eff 100%);
-    background-size: 200% 200%;
+    background-size: 200% 200%;  /* Tamaño más grande permite el movimiento */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: rainbowShift 5s ease infinite;
-    /* Sombras brillantes para efecto de energía */
+    /* Múltiples sombras para efecto de energía brillante */
     filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7))
             drop-shadow(0 0 45px rgba(255, 140, 0, 0.5));
     margin-bottom: 15px;
 }
 
-/* Descripción del sitio debajo del título */
+/* =============================================================================
+   DESCRIPCIÓN DEL HEADER
+   - Texto secundario con estilo más sutil
+   - Color gris claro (#f0f0f0) para buena legibilidad
+   - Text-shadow suave para separarlo del fondo
+============================================================================= */
 .header p {
     position: relative;
     z-index: 2;
     font-size: 1.3rem;
-    color: #f0f0f0; /* Texto más claro */
+    color: #f0f0f0;
     font-weight: 300;
     letter-spacing: 1px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* ===========================
-   MINI-BANNER PROMOCIONAL
-   Sección destacada entre el header y la galería
-   =========================== */
+/* =============================================================================
+   BANNER PROMOCIONAL
+   - Sección destacada entre el header y la galería
+   - Gradiente azul vibrante que llama la atención
+   - Box-shadow con múltiples capas para profundidad
+   - Border sutil con transparencia para efecto glassmorphism
+   - Transition suave para el efecto hover
+   - Max-width y margin auto para centrar el banner
+============================================================================= */
 .promo {
     position: relative;
     max-width: 1000px;
     margin: 50px auto;
     padding: 35px 25px;
     border-radius: 20px;
-    /* Gradiente azul vibrante más claro */
+    /* Gradiente diagonal de azul oscuro a azul claro */
     background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
     box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.4),
-        0 0 50px rgba(59, 130, 246, 0.3);
+        0 15px 35px rgba(0, 0, 0, 0.4),  /* Sombra principal oscura */
+        0 0 50px rgba(59, 130, 246, 0.3);  /* Glow azul */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Efecto hover del banner - Se eleva y brilla */
+/* =============================================================================
+   EFECTO HOVER DEL BANNER
+   - Se eleva 8px hacia arriba (translateY negativo)
+   - Aumenta la intensidad del brillo con sombras más fuertes
+   - Agrega glow dorado para efecto de energía activada
+============================================================================= */
 .promo:hover {
     transform: translateY(-8px);
     box-shadow: 
         0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 60px rgba(255, 215, 0, 0.5),
-        0 0 100px rgba(59, 130, 246, 0.4);
+        0 0 60px rgba(255, 215, 0, 0.5),  /* Glow dorado */
+        0 0 100px rgba(59, 130, 246, 0.4);  /* Glow azul expandido */
 }
 
-/* Contenedor de texto del banner */
+/* Título del banner promocional */
 .promo-text h2 {
     font-size: 2.2rem;
     font-weight: 700;
+    /* Text-shadow con dos capas: sombra oscura y glow amarillo */
     text-shadow: 
         2px 2px 10px rgba(0, 0, 0, 0.5),
         0 0 20px rgba(255, 235, 59, 0.6);
@@ -149,6 +192,7 @@ body::before {
     letter-spacing: 2px;
 }
 
+/* Descripción del banner */
 .promo-text p {
     font-size: 1.1rem;
     color: #f0f0f0;
@@ -156,15 +200,19 @@ body::before {
     line-height: 1.6;
 }
 
-/* ===========================
+/* =============================================================================
    GALERÍA PRINCIPAL
-   Grid responsivo con las cards de personajes
-   =========================== */
+   - Sistema de grid responsivo que se adapta automáticamente
+   - repeat(auto-fill, minmax(280px, 1fr)): Crea columnas que mínimo miden 280px
+     y se expanden hasta llenar el espacio disponible (1fr)
+   - Gap de 30px entre las tarjetas
+   - Max-width para limitar el ancho en pantallas muy grandes
+   - Z-index: 1 para colocarse sobre el fondo animado
+============================================================================= */
 .gallery {
     position: relative;
     z-index: 1;
     display: grid;
-    /* Grid adaptativo: mínimo 280px, máximo 1fr por columna */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
     padding: 60px 30px;
@@ -172,87 +220,117 @@ body::before {
     margin: 0 auto;
 }
 
-/* ===========================
-   CARDS DE PERSONAJES
-   Tarjetas individuales con efecto 3D
-   =========================== */
+/* =============================================================================
+   TARJETAS DE PERSONAJES
+   - Cards individuales con efecto 3D al hacer hover
+   - Border-radius para esquinas redondeadas
+   - Overflow hidden para que la imagen no se salga al hacer zoom
+   - Transform-style y perspective habilitan las transformaciones 3D
+   - Gradiente sutil en el fondo para dar profundidad
+   - Box-shadow con inset para borde luminoso interno
+   - Border semi-transparente para efecto glassmorphism
+============================================================================= */
 .gallery-item {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    /* Fondo más claro para las cards */
+    /* Gradiente diagonal de grises para textura */
     background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
     box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 10px 30px rgba(0, 0, 0, 0.6),  /* Sombra externa */
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);  /* Borde luminoso interno */
+    /* Cubic-bezier para transición más dinámica (bounce suave) */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
     perspective: 1000px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 
-   Overlay de color que aparece al hacer hover
-   Simula el aura de energía del personaje
-*/
+/* =============================================================================
+   OVERLAY DE AURA (HOVER)
+   - Pseudo-elemento ::before que cubre toda la card
+   - Gradiente multicolor que simula el aura del personaje
+   - Opacity 0 por defecto, se hace visible al hover
+   - Inset: 0 hace que cubra completamente la card
+   - Z-index: 1 lo coloca sobre la imagen pero bajo el texto
+============================================================================= */
 .gallery-item::before {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, 
-        rgba(255, 215, 0, 0.35) 0%, 
-        rgba(255, 140, 0, 0.25) 50%, 
-        rgba(74, 158, 255, 0.35) 100%);
+        rgba(255, 215, 0, 0.35) 0%,  /* Dorado */
+        rgba(255, 140, 0, 0.25) 50%,  /* Naranja */
+        rgba(74, 158, 255, 0.35) 100%);  /* Azul */
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
     border-radius: 20px;
 }
 
-/* 
-   Efecto hover de la card
-   Levita, rota ligeramente y aumenta el brillo
-*/
+/* =============================================================================
+   EFECTO HOVER DE LA CARD
+   - TranslateY(-15px): Levita 15px hacia arriba
+   - RotateX(5deg): Rota ligeramente en el eje X para efecto 3D
+   - Scale(1.02): Aumenta el tamaño un 2%
+   - Box-shadow más intenso con glow dorado y naranja
+   - El overlay ::before se vuelve visible (opacity: 1)
+============================================================================= */
 .gallery-item:hover {
     transform: translateY(-15px) rotateX(5deg) scale(1.02);
     box-shadow: 
-        0 20px 60px rgba(255, 215, 0, 0.5),
-        0 0 50px rgba(255, 140, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        0 20px 60px rgba(255, 215, 0, 0.5),  /* Sombra dorada */
+        0 0 50px rgba(255, 140, 0, 0.4),  /* Glow naranja */
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);  /* Borde interno más brillante */
 }
 
 .gallery-item:hover::before {
-    opacity: 1;
+    opacity: 1;  /* Activa el overlay de aura */
 }
 
-/* 
+/* =============================================================================
    IMÁGENES DE PERSONAJES
-   object-fit: contain asegura que los renders se vean completos
-   sin recortes ni zoom excesivo
-*/
+   - Width: 100% para ocupar todo el ancho de la card
+   - Height fijo de 350px para uniformidad en el grid
+   - object-fit: contain mantiene las proporciones sin recortar
+     (a diferencia de 'cover' que recorta para llenar el espacio)
+   - object-position: center centra la imagen en el contenedor
+   - Padding: 20px crea espacio entre la imagen y el borde de la card
+   - Background con gradiente radial para resaltar los personajes
+   - Transition suave para el efecto de zoom al hover
+============================================================================= */
 .gallery-item img {
     width: 100%;
     height: 350px;
-    object-fit: contain; /* Mantiene proporciones sin recortar */
+    object-fit: contain;  /* IMPORTANTE: Evita zoom excesivo en renders */
     object-position: center;
-    /* Fondo degradado más claro para resaltar los personajes */
+    /* Gradiente radial del centro hacia afuera */
     background: radial-gradient(circle, #2a2a2a 0%, #1a1a1a 100%);
     transition: all 0.5s ease;
     display: block;
-    padding: 20px; /* Espaciado interno para que no se peguen al borde */
+    padding: 20px;
 }
 
-/* Zoom suave de la imagen al hover */
+/* =============================================================================
+   ZOOM DE IMAGEN AL HOVER
+   - Scale(1.08): Aumenta la imagen un 8%
+   - Filter brightness: Aumenta el brillo un 15%
+   - Filter contrast: Aumenta el contraste un 10%
+   - Estos filtros hacen que la imagen se vea más vibrante
+============================================================================= */
 .gallery-item:hover img {
     transform: scale(1.08);
     filter: brightness(1.15) contrast(1.1);
 }
 
-/* ===========================
-   INFORMACIÓN DEL PERSONAJE
-   Título y descripción debajo de la imagen
-   =========================== */
+/* =============================================================================
+   CONTENEDORES DE INFORMACIÓN
+   - Título (h2) y descripción (p) del personaje
+   - Position relative con z-index: 2 para estar sobre el overlay
+   - Width: 100% para ocupar todo el ancho
+   - Text-align: center para centrar el texto
+============================================================================= */
 .gallery-item h2,
 .gallery-item p {
     position: relative;
@@ -262,10 +340,14 @@ body::before {
     margin: 0;
 }
 
-/* 
-   Título del personaje
-   Color dorado con efecto de brillo
-*/
+/* =============================================================================
+   TÍTULO DEL PERSONAJE
+   - Color dorado (#ffd700) característico de DBZ
+   - Text-transform: uppercase para mayor impacto
+   - Text-shadow con doble capa: glow dorado y sombra oscura
+   - Background con gradiente sutil para separarlo de la descripción
+   - Border-top dorado para delimitar visualmente
+============================================================================= */
 .gallery-item h2 {
     font-size: 1.4rem;
     font-weight: 700;
@@ -275,25 +357,34 @@ body::before {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 
-        0 0 15px rgba(255, 215, 0, 0.9),
-        0 2px 4px rgba(0, 0, 0, 0.8);
+        0 0 15px rgba(255, 215, 0, 0.9),  /* Glow dorado */
+        0 2px 4px rgba(0, 0, 0, 0.8);  /* Sombra de profundidad */
     border-top: 2px solid rgba(255, 215, 0, 0.4);
 }
 
-/* Descripción del personaje */
+/* =============================================================================
+   DESCRIPCIÓN DEL PERSONAJE
+   - Color gris claro (#d0d0d0) para buena legibilidad
+   - Font-weight: 300 (light) para contraste con el título bold
+   - Background oscuro semi-transparente
+   - Padding asimétrico: menos arriba, más a los lados y abajo
+============================================================================= */
 .gallery-item p {
     font-size: 0.95rem;
     padding: 8px 15px 15px;
     background: rgba(20, 20, 20, 0.9);
-    color: #d0d0d0; /* Texto más claro */
+    color: #d0d0d0;
     line-height: 1.5;
     font-weight: 300;
 }
 
-/* ===========================
-   FOOTER
-   Pie de página con créditos
-   =========================== */
+/* =============================================================================
+   FOOTER - Pie de página
+   - Fondo con gradiente vertical de transparente a opaco
+   - Border-top dorado sutil para separación visual
+   - Color de texto con transparencia para efecto discreto
+   - Margin-top para separarlo de la galería
+============================================================================= */
 .footer {
     position: relative;
     z-index: 1;
@@ -310,56 +401,62 @@ body::before {
     letter-spacing: 1px;
 }
 
-/* ===========================
-   ANIMACIONES
-   Efectos de movimiento y transición
-   =========================== */
+/* =============================================================================
+   ANIMACIONES KEYFRAMES
+   Definen los movimientos y transiciones dinámicas del sitio
+============================================================================= */
 
-/* Pulso de energía del fondo */
+/* Animación de pulso para las partículas de energía del fondo */
 @keyframes energyPulse {
     0%, 100% { 
         opacity: 1;
         transform: scale(1);
     }
     50% { 
-        opacity: 0.85;
-        transform: scale(1.1);
+        opacity: 0.85;  /* Disminuye la opacidad */
+        transform: scale(1.1);  /* Aumenta el tamaño */
     }
 }
 
-/* Barrido de aura en el header */
+/* Animación de barrido del aura en el header */
 @keyframes auraSweep {
     0% { transform: translateX(-100%) translateY(-100%); }
     100% { transform: translateX(100%) translateY(100%); }
 }
 
-/* Cambio de posición del gradiente del título */
+/* Animación del gradiente del título - mueve el background-position */
 @keyframes rainbowShift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
 
-/* Aparición de cards con escala y desplazamiento */
+/* Animación de entrada de las cards - aparecen con escala y movimiento */
 @keyframes fadeInScale {
     from { 
         opacity: 0; 
-        transform: scale(0.9) translateY(30px);
+        transform: scale(0.9) translateY(30px);  /* Más pequeñas y abajo */
     }
     to { 
         opacity: 1; 
-        transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);  /* Tamaño normal y en posición */
     }
 }
 
-/* 
-   Aplicar animación de entrada a todas las cards
-   Cada card aparece progresivamente
-*/
+/* =============================================================================
+   APLICACIÓN DE ANIMACIÓN A LAS CARDS
+   - Todas las cards usan la animación fadeInScale
+   - Backwards mantiene el primer frame antes de que inicie la animación
+============================================================================= */
 .gallery-item {
     animation: fadeInScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
 }
 
-/* Efecto cascada: cada card tiene un delay diferente */
+/* =============================================================================
+   EFECTO CASCADA
+   - Cada card tiene un delay diferente para crear efecto secuencial
+   - Van desde 0.05s hasta 1s (20 personajes)
+   - Esto hace que aparezcan una tras otra en lugar de todas a la vez
+============================================================================= */
 .gallery-item:nth-child(1) { animation-delay: 0.05s; }
 .gallery-item:nth-child(2) { animation-delay: 0.1s; }
 .gallery-item:nth-child(3) { animation-delay: 0.15s; }
@@ -381,23 +478,26 @@ body::before {
 .gallery-item:nth-child(19) { animation-delay: 0.95s; }
 .gallery-item:nth-child(20) { animation-delay: 1s; }
 
-/* ===========================
-   DISEÑO RESPONSIVE
-   Adaptación para diferentes tamaños de pantalla
-   =========================== */
+/* =============================================================================
+   MEDIA QUERIES - DISEÑO RESPONSIVE
+   Adaptación del diseño para diferentes tamaños de pantalla
+============================================================================= */
 
-/* Tablets y pantallas medianas (1024px o menos) */
+/* TABLETS Y PANTALLAS MEDIANAS (hasta 1024px) */
 @media (max-width: 1024px) {
+    /* Grid con columnas más pequeñas */
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 25px;
         padding: 50px 20px;
     }
     
+    /* Título más pequeño */
     .header h1 {
         font-size: 3rem;
     }
 
+    /* Banner con menos margen */
     .promo {
         margin: 40px auto;
         padding: 30px 20px;
@@ -408,23 +508,27 @@ body::before {
     }
 }
 
-/* Móviles y tablets pequeñas (768px o menos) */
+/* MÓVILES Y TABLETS PEQUEÑAS (hasta 768px) */
 @media (max-width: 768px) {
+    /* Grid con columnas aún más pequeñas */
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 20px;
         padding: 40px 15px;
     }
 
+    /* Imágenes más pequeñas para ahorrar espacio */
     .gallery-item img {
         height: 280px;
         padding: 15px;
     }
 
+    /* Header con menos padding */
     .header {
         padding: 60px 20px 40px;
     }
 
+    /* Tipografía reducida */
     .header h1 {
         font-size: 2.5rem;
         letter-spacing: 2px;
@@ -434,6 +538,7 @@ body::before {
         font-size: 1.1rem;
     }
 
+    /* Banner más compacto */
     .promo {
         margin: 30px 15px;
         padding: 25px 18px;
@@ -447,6 +552,7 @@ body::before {
         font-size: 0.95rem;
     }
 
+    /* Textos de las cards más pequeños */
     .gallery-item h2 {
         font-size: 1.2rem;
         padding: 12px 8px 6px;
@@ -458,17 +564,20 @@ body::before {
     }
 }
 
-/* Móviles pequeños (480px o menos) */
+/* MÓVILES PEQUEÑOS (hasta 480px) */
 @media (max-width: 480px) {
+    /* Grid de una sola columna */
     .gallery {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
+    /* Imagen más alta para aprovechar la pantalla vertical */
     .gallery-item img {
         height: 320px;
     }
 
+    /* Tipografía mínima para pantallas pequeñas */
     .header h1 {
         font-size: 2rem;
     }

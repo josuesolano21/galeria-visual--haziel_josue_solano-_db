@@ -324,9 +324,8 @@ Las sombras de texto tienen doble propósito: añaden el efecto de "glow" caract
 
 *Haziel Josue Solano*
 
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu-email@ejemplo.com
-- Proyecto: Galería Visual DBZ - Transferencia del Conocimiento SENA
+- Email: josues230@hotmail.com
+- Proyecto: Galería Visual DBZ 
 
 ⭐ Si te gustó este proyecto, dale una estrella en GitHub!⭐
 

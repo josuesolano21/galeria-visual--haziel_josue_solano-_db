@@ -1,0 +1,487 @@
+/* ============================================================================
+   GALERÍA DBZ - DISEÑO ULTRA INSTINTO (VERSIÓN CLARA)
+   Nuevo concepto visual con energía dinámica y efectos modernos
+   Paleta de colores más luminosa para mejor visibilidad
+============================================================================ */
+
+/* ===========================
+   RESET Y CONFIGURACIÓN BASE
+   =========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+   BODY - Fondo base más claro con efecto de profundidad
+   Se usa un gris oscuro en lugar de negro puro para mejor contraste
+*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #1a1a1a; /* Fondo más claro que antes (#0a0a0a) */
+    color: #ffffff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 
+   Capa de efectos de energía - Simula partículas Ki flotantes
+   Usa gradientes radiales para crear puntos de luz dinámicos
+*/
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 150, 50, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(100, 180, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 220, 100, 0.12) 0%, transparent 50%);
+    animation: energyPulse 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===========================
+   HEADER PRINCIPAL
+   Sección superior con título y descripción
+   =========================== */
+.header {
+    position: relative;
+    text-align: center;
+    padding: 80px 20px 60px;
+    /* Gradiente más claro para el header */
+    background: linear-gradient(180deg, #2a2a2a 0%, #3a2510 50%, #2a2a2a 100%);
+    overflow: hidden;
+    border-bottom: 3px solid;
+    /* Borde con gradiente de colores DBZ */
+    border-image: linear-gradient(90deg, #ff8c00, #ffd700, #4a9eff, #ff8c00) 1;
+}
+
+/* 
+   Efecto de aura que se desplaza constantemente
+   Simula energía moviéndose por el header
+*/
+.header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.08) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(255, 140, 0, 0.08) 50%, transparent 70%);
+    animation: auraSweep 8s linear infinite;
+    pointer-events: none;
+}
+
+/* 
+   Título principal con efecto de gradiente arcoíris
+   Usa background-clip para aplicar el gradiente al texto
+*/
+.header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #4a9eff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 5s ease infinite;
+    /* Sombras brillantes para efecto de energía */
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7))
+            drop-shadow(0 0 45px rgba(255, 140, 0, 0.5));
+    margin-bottom: 15px;
+}
+
+/* Descripción del sitio debajo del título */
+.header p {
+    position: relative;
+    z-index: 2;
+    font-size: 1.3rem;
+    color: #f0f0f0; /* Texto más claro */
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* ===========================
+   MINI-BANNER PROMOCIONAL
+   Sección destacada entre el header y la galería
+   =========================== */
+.promo {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 35px 25px;
+    border-radius: 20px;
+    /* Gradiente azul vibrante más claro */
+    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(59, 130, 246, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Efecto hover del banner - Se eleva y brilla */
+.promo:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.5),
+        0 0 100px rgba(59, 130, 246, 0.4);
+}
+
+/* Contenedor de texto del banner */
+.promo-text h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 
+        2px 2px 10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 235, 59, 0.6);
+    margin-bottom: 12px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.promo-text p {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* ===========================
+   GALERÍA PRINCIPAL
+   Grid responsivo con las cards de personajes
+   =========================== */
+.gallery {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    /* Grid adaptativo: mínimo 280px, máximo 1fr por columna */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px 30px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* ===========================
+   CARDS DE PERSONAJES
+   Tarjetas individuales con efecto 3D
+   =========================== */
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    /* Fondo más claro para las cards */
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 
+   Overlay de color que aparece al hacer hover
+   Simula el aura de energía del personaje
+*/
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.35) 0%, 
+        rgba(255, 140, 0, 0.25) 50%, 
+        rgba(74, 158, 255, 0.35) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+/* 
+   Efecto hover de la card
+   Levita, rota ligeramente y aumenta el brillo
+*/
+.gallery-item:hover {
+    transform: translateY(-15px) rotateX(5deg) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(255, 215, 0, 0.5),
+        0 0 50px rgba(255, 140, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+/* 
+   IMÁGENES DE PERSONAJES
+   object-fit: contain asegura que los renders se vean completos
+   sin recortes ni zoom excesivo
+*/
+.gallery-item img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain; /* Mantiene proporciones sin recortar */
+    object-position: center;
+    /* Fondo degradado más claro para resaltar los personajes */
+    background: radial-gradient(circle, #2a2a2a 0%, #1a1a1a 100%);
+    transition: all 0.5s ease;
+    display: block;
+    padding: 20px; /* Espaciado interno para que no se peguen al borde */
+}
+
+/* Zoom suave de la imagen al hover */
+.gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.15) contrast(1.1);
+}
+
+/* ===========================
+   INFORMACIÓN DEL PERSONAJE
+   Título y descripción debajo de la imagen
+   =========================== */
+.gallery-item h2,
+.gallery-item p {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+/* 
+   Título del personaje
+   Color dorado con efecto de brillo
+*/
+.gallery-item h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 15px 10px 8px;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.95) 0%, rgba(20, 20, 20, 0.9) 100%);
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.8);
+    border-top: 2px solid rgba(255, 215, 0, 0.4);
+}
+
+/* Descripción del personaje */
+.gallery-item p {
+    font-size: 0.95rem;
+    padding: 8px 15px 15px;
+    background: rgba(20, 20, 20, 0.9);
+    color: #d0d0d0; /* Texto más claro */
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* ===========================
+   FOOTER
+   Pie de página con créditos
+   =========================== */
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.95) 100%);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+    margin-top: 40px;
+}
+
+.footer p {
+    letter-spacing: 1px;
+}
+
+/* ===========================
+   ANIMACIONES
+   Efectos de movimiento y transición
+   =========================== */
+
+/* Pulso de energía del fondo */
+@keyframes energyPulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.85;
+        transform: scale(1.1);
+    }
+}
+
+/* Barrido de aura en el header */
+@keyframes auraSweep {
+    0% { transform: translateX(-100%) translateY(-100%); }
+    100% { transform: translateX(100%) translateY(100%); }
+}
+
+/* Cambio de posición del gradiente del título */
+@keyframes rainbowShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Aparición de cards con escala y desplazamiento */
+@keyframes fadeInScale {
+    from { 
+        opacity: 0; 
+        transform: scale(0.9) translateY(30px);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* 
+   Aplicar animación de entrada a todas las cards
+   Cada card aparece progresivamente
+*/
+.gallery-item {
+    animation: fadeInScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+/* Efecto cascada: cada card tiene un delay diferente */
+.gallery-item:nth-child(1) { animation-delay: 0.05s; }
+.gallery-item:nth-child(2) { animation-delay: 0.1s; }
+.gallery-item:nth-child(3) { animation-delay: 0.15s; }
+.gallery-item:nth-child(4) { animation-delay: 0.2s; }
+.gallery-item:nth-child(5) { animation-delay: 0.25s; }
+.gallery-item:nth-child(6) { animation-delay: 0.3s; }
+.gallery-item:nth-child(7) { animation-delay: 0.35s; }
+.gallery-item:nth-child(8) { animation-delay: 0.4s; }
+.gallery-item:nth-child(9) { animation-delay: 0.45s; }
+.gallery-item:nth-child(10) { animation-delay: 0.5s; }
+.gallery-item:nth-child(11) { animation-delay: 0.55s; }
+.gallery-item:nth-child(12) { animation-delay: 0.6s; }
+.gallery-item:nth-child(13) { animation-delay: 0.65s; }
+.gallery-item:nth-child(14) { animation-delay: 0.7s; }
+.gallery-item:nth-child(15) { animation-delay: 0.75s; }
+.gallery-item:nth-child(16) { animation-delay: 0.8s; }
+.gallery-item:nth-child(17) { animation-delay: 0.85s; }
+.gallery-item:nth-child(18) { animation-delay: 0.9s; }
+.gallery-item:nth-child(19) { animation-delay: 0.95s; }
+.gallery-item:nth-child(20) { animation-delay: 1s; }
+
+/* ===========================
+   DISEÑO RESPONSIVE
+   Adaptación para diferentes tamaños de pantalla
+   =========================== */
+
+/* Tablets y pantallas medianas (1024px o menos) */
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 25px;
+        padding: 50px 20px;
+    }
+    
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .promo {
+        margin: 40px auto;
+        padding: 30px 20px;
+    }
+
+    .promo-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Móviles y tablets pequeñas (768px o menos) */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 40px 15px;
+    }
+
+    .gallery-item img {
+        height: 280px;
+        padding: 15px;
+    }
+
+    .header {
+        padding: 60px 20px 40px;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    .header p {
+        font-size: 1.1rem;
+    }
+
+    .promo {
+        margin: 30px 15px;
+        padding: 25px 18px;
+    }
+
+    .promo-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .promo-text p {
+        font-size: 0.95rem;
+    }
+
+    .gallery-item h2 {
+        font-size: 1.2rem;
+        padding: 12px 8px 6px;
+    }
+
+    .gallery-item p {
+        font-size: 0.85rem;
+        padding: 6px 12px 12px;
+    }
+}
+
+/* Móviles pequeños (480px o menos) */
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .gallery-item img {
+        height: 320px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .promo-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .promo-text p {
+        font-size: 0.9rem;
+    }
+}

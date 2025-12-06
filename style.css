@@ -32,6 +32,8 @@ body {
     color: #ffffff;
     position: relative;
     overflow-x: hidden;
+    background-repeat: no-repeat;  /* Evita que el fondo se repita */
+    background-attachment: fixed
 }
 
 /* =============================================================================
